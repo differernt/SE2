@@ -20,9 +20,20 @@ public class Circle
     StdDraw.setPenRadius(.005);
     //
     StdDraw.setPenColor(StdDraw.GREEN);
-    StdDraw.filledCircle(this.mux,this.muy,this.r);
+    StdDraw.circle(this.mux,this.muy,this.r);
 
     //StdDraw.clear();
+  }
+  //Calculate Distance
+  public double Distance(Circle c){
+    double distance;
+    distance = Math.sqrt( (this.getX() - c.getX())*(this.getX() -c.getX()) + (this.getY() - c.getY())*(this.getY() - c.getY())  );
+    return distance;
+  }
+  public double Distance(Point p){
+    double distance;
+    distance = Math.sqrt( (this.getX() - p.getX())*(this.getX() -p.getX()) + (this.getY() - p.getY())*(this.getY() - p.getY())  );
+    return distance;
   }
 
 

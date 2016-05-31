@@ -16,13 +16,25 @@ public class Point
   {
     StdDraw.setXscale(-1.0, 1.0);
     StdDraw.setYscale(-1.0, 1.0);
-    StdDraw.setPenRadius(.005);
+    StdDraw.setPenRadius(.010);
     //
     StdDraw.setPenColor(StdDraw.RED);
     StdDraw.point(this.mux,this.muy);
 
     //StdDraw.clear();
   }
+  //Calculate Distance
+    public double Distance(Circle c){
+      double distance;
+      distance = Math.sqrt( (this.getX() - c.getX())*(this.getX() -c.getX()) + (this.getY() - c.getY())*(this.getY() - c.getY())  );
+      return distance;
+    }
+    public double Distance(Point p){
+      double distance;
+      distance = Math.sqrt( (this.getX() - p.getX())*(this.getX() -p.getX()) + (this.getY() - p.getY())*(this.getY() - p.getY())  );
+      return distance;
+    }
+
 
 
   //getters
