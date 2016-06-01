@@ -79,6 +79,7 @@ public class main{
     double x, y, r;
 /* PART 1 (Three points)****************/
     double a1,b1,c1,a2,b2,c2,x1,x2,x3,y1,y2,y3;
+
     for(int i = 0;i < d;i ++){
       for(int j = 0;j < d;j ++){
         for(int k = 0;k < d;k ++){
@@ -103,13 +104,150 @@ public class main{
         }
       }
     }
+
 /* PART 2 (Two points and One line)*****/
     for(int i = 0;i < d;i ++){
       for(int j = 0;j < d;j ++){
+        if(i == j) continue;
         x1 = po[i].getX();x2 = po[j].getX();
         y1 = po[i].getY();y2 = po[j].getY();
+        double dis ;
+        /****UP(line)****/
+        y3 = 1.0;
+        x3 = (y3 - y1)*(x2 - x1) / (y2 - y1) + x1;
+        dis = Math.sqrt(Math.sqrt((x3 - x2)*(x3-x2) + (y3 - y2)*(y3 - y2))
+            * Math.sqrt((x3-x1)*(x3-x1) + (y3 - y1)*(y3 - y1)));
+        //CASE 1
+        x = x3 + dis;
+        y = -(x2 - x1)*x/(y2 - y1) + (y1 + y2)/2 + (x1 - x2)*(x1 + x2)/(2*y2 - 2*y1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = y3 - y;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
+        //CASE 2
+        x = x3 - dis;
+        y = -(x2 - x1)*x/(y2 - y1) + (y1 + y2)/2 + (x1 - x2)*(x1 + x2)/(2*y2 - 2*y1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = y3 - y;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
+        /****DOWN(line)****/
+        y3 = -1.0;
+        x3 = (y3 - y1)*(x2 - x1) / (y2 - y1) + x1;
+        dis = Math.sqrt(Math.sqrt((x3 - x2)*(x3-x2) + (y3 - y2)*(y3 - y2))
+            * Math.sqrt((x3-x1)*(x3-x1) + (y3 - y1)*(y3 - y1)));
+        //CASE 1
+        x = x3 + dis;
+        y = -(x2 - x1)*x/(y2 - y1) + (y1 + y2)/2 + (x1 - x2)*(x1 + x2)/(2*y2 - 2*y1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = y - y3;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
+        //CASE 2
+        x = x3 - dis;
+        y = -(x2 - x1)*x/(y2 - y1) + (y1 + y2)/2 + (x1 - x2)*(x1 + x2)/(2*y2 - 2*y1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = y - y3;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
+        /****RIGHT(line)****/
+        x3 = 1.0;
+        y3 = (x3 - x1)*(y2 - y1) / (x2 - x1) + y1;
+        dis = Math.sqrt(Math.sqrt((x3 - x2)*(x3-x2) + (y3 - y2)*(y3 - y2))
+            * Math.sqrt((x3-x1)*(x3-x1) + (y3 - y1)*(y3 - y1)));
+
+        //CASE 1
+        y = y3 + dis;
+        x = -(y2 - y1)*y/(x2 - x1) + (x1 + x2)/2 + (y1 - y2)*(y1 + y2)/(2*x2 - 2*x1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = x3 - x;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
+        //CASE 2
+        y = y3 - dis;
+        x = -(y2 - y1)*y/(x2 - x1) + (x1 + x2)/2 + (y1 - y2)*(y1 + y2)/(2*x2 - 2*x1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = x3 - x;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
+        /****LEFT(line)****/
+        x3 = -1.0;
+        y3 = (x3 - x1)*(y2 - y1) / (x2 - x1) + y1;
+        dis = Math.sqrt(Math.sqrt((x3 - x2)*(x3-x2) + (y3 - y2)*(y3 - y2))
+            * Math.sqrt((x3-x1)*(x3-x1) + (y3 - y1)*(y3 - y1)));
+
+        //CASE 1
+        y = y3 + dis;
+        x = -(y2 - y1)*y/(x2 - x1) + (x1 + x2)/2 + (y1 - y2)*(y1 + y2)/(2*x2 - 2*x1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = x - x3;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
+        //CASE 2
+        y = y3 - dis;
+        x = -(y2 - y1)*y/(x2 - x1) + (x1 + x2)/2 + (y1 - y2)*(y1 + y2)/(2*x2 - 2*x1);
+        //y=-(x2-x1)/(y2-y1) X+（y1+y2)/2+(x1-x2)(x1+x2)/(2y2-2y1)
+        r = Math.sqrt((x - x1)*(x - x1) + (y - y1)*(y - y1));
+        //r = x - x3;
+        // StdOut.println("r is: "+ r);
+        setCircle(cir,m,x,y,r);
+        if(judge(cir,po,m,d) && r > R){//flag == true
+          X = x;
+          Y = y;
+          R = r;
+        }
       }
     }
+/* PART 3 (Two points and One Circle)****
+    for(int i = 0;i < d;i ++){
+      for(int j = 0;j < d;j ++){
+        if(i == j) continue;
+        for(int k = 0;k < m;k ++){
+        }
+      }
+*/
 
     //Change Value
     setCircle(cir, m, X, Y, R);
